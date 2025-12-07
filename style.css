@@ -1,0 +1,42 @@
+body {
+    background-color: #726e97;
+    color: #a0cef3;
+}
+
+#taskForm {
+    background-color: #7f557d;
+    border: 4px solid #7698b3;
+}
+
+.formBtn {
+    background-color: #726e97;
+    color: #a0cef3;
+    padding: 8px;
+    border-radius: 10px;
+    border: none; 
+    transition: all 0.3s ease;
+}
+
+.formBtn:hover {
+    background-color: #534d90;
+    transform: translateY(-2px);
+}
+.taskContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.completeBtn, .deleteBtn {
+    transition: all 0.3s ease;
+    width: 24px;
+    height: 24px;
+}
+.completeBtn:hover, .deleteBtn:hover {
+    transform: translateY(-2px);
+}
+
+.completedTask {
+    text-decoration: line-through;
+    color: gray;
+}
