@@ -1,35 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO App</title>
     <!-- Bootstrap -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
     <!-- CSS -->
-     <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     
-    <!-- Task Form -->
-     <div class="container">
-        <h1 class="display-5 my-4">TODO App</h1>
-        <form id="taskForm" class="p-4 shadow-lg rounded-5 w-50">
+    <!-- Header -->
+    <header class="shadow-lg wrapper">
+      <h1 class="display-5 my-4">TODO App</h1>
+    </header>
+     <!-- Main -->
+    <main>
+   
+      <!-- Section -->
+      <section class="mt-4">
+        <!-- Task Form -->
+        <div class="container">
+          <form id="taskForm" class="p-4 shadow-lg rounded-5 w-50">
             <div class="mb-3">
-                <label for="taskName" class="form-label fw-bold">Enter Task</label>
-                <input type="text" id="taskName" class="form-control">
+              <label for="taskName" class="form-label fw-bold"
+                >Enter Task</label
+              >
+              <input type="text" id="taskName" class="form-control" />
             </div>
             <button onclick="addTask()" class="formBtn">Add Task</button>
-        </form>
-     </div>
-    <!-- Output - Task Items List -->
-     <ul id="taskList" class="container list-group my-4">
+          </form>
+        </div>
+      </section>
+      <!-- Output Section -->
+      <section>
+        <!-- Output - Task Items List -->
+        <ul id="taskList" class="ms-5 list-group my-4 w-50"></ul>
+      </section>
+    </main>
 
-     </ul>
-
+    <!-- Footer -->
+     <footer class="mt-5">
+        <p>&copy; 2025 Created by Jennifer Tarleton @ CodeX</p>
+     </footer>
 
     <!-- JS -->
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

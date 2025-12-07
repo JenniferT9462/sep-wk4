@@ -50,7 +50,7 @@ async function getTasks() {
   let response = await fetch(SUPABASE_URL, {
     method: "GET",
     headers: {
-      "apikey": APIKEY,
+      apikey: APIKEY,
     },
   });
 
@@ -69,25 +69,27 @@ function renderTasks(tasks) {
   for (let i = 0; i < tasks.length; i++) {
     // Check if tasks are completed
     const isCompleted = tasks[i].isCompleted;
-    const completed = isCompleted ? "completedTask" : "";
+    const completed = isCompleted ? "completedTask" : "complete";
     const timeStamp = tasks[i].created_at;
     let dateObject = new Date(timeStamp);
 
     let options = {
       year: "numeric",
-      month: "2-digit", 
+      month: "2-digit",
       day: "2-digit",
       timeZone: "UTC",
     };
 
-    const formattedDate = new Intl.DateTimeFormat("en-us", options).format(dateObject);
+    const formattedDate = new Intl.DateTimeFormat("en-us", options).format(
+      dateObject
+    );
 
     taskList.innerHTML += `
             <li class="${completed} list-group-item list-group-item-light list-group-item-action">
                 <div class="taskContent mt-2">
                     <p>${tasks[i].taskName} <span>${formattedDate}</span></p>
                     <div class="d-flex gap-3">
-                        <img class="completeBtn" onClick="completeTask(${tasks[i].id})" src="completed.svg"/>
+                        <img class="completeBtn" onClick="completeTask(${tasks[i].id}, ${tasks[i].isCompleted})" src="${completed}.svg"/>
                         <img class="deleteBtn" onClick="deleteTask(${tasks[i].id})" src="delete.svg"/>
                     </div>
                 </div>
@@ -97,33 +99,42 @@ function renderTasks(tasks) {
 }
 
 async function deleteTask(id) {
-  
   let response = await fetch(`${SUPABASE_URL}?id=eq.${id}`, {
     method: "DELETE",
     headers: {
-      "apikey": APIKEY,
-      "Prefer": "return=representation",
-      "Content-Type": "application/json"
-    }
-  })
+      apikey: APIKEY,
+      Prefer: "return=representation",
+      "Content-Type": "application/json",
+    },
+  });
   getTasks();
 }
 
-async function completeTask(id) {
-  let updateTask = {
-    isCompleted: true,
+async function completeTask(id, isCompleted) {
+  let newStatus;
+
+  if (isCompleted === false) {
+    newStatus = true;
+  } else {
+    newStatus = false;
   }
 
-  let response = await fetch(`${SUPABASE_URL}?id=eq.${id}`, {
-    method: "PATCH",
-    headers: {
-      "apikey": APIKEY,
-      "Prefer": "return=representation",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(updateTask)
-  })
+  let updateTask = {
+    isCompleted: newStatus
+  }
+
+    let response = await fetch(`${SUPABASE_URL}?id=eq.${id}`, {
+      method: "PATCH",
+      headers: {
+        apikey: APIKEY,
+        Prefer: "return=representation",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateTask),
+    });
 
 
   getTasks();
 }
+
+
